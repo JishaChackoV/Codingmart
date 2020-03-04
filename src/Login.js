@@ -13,14 +13,14 @@ class Login extends Component {
     }
     onSubmit  = () =>{
         const {name,password} =this.state
-        const nameData = localStorage.getItem("name");
-        const passwordData = localStorage.getItem("password")
-        if((name === nameData) && (password === passwordData)){
-            this.props.history.push('/question')
-            this.setState({redirect:true})
-           
-        }
-        
+        if (name !== '' && password !== ''){
+            const nameData = localStorage.getItem("name");
+            const passwordData = localStorage.getItem("password")
+            if((name === nameData) && (password === passwordData)){
+                this.props.history.push('/question')
+            
+            }
+    }
 
     }
     render() {
@@ -30,7 +30,7 @@ class Login extends Component {
                <div> <span>Name</span>  <input type="text" onChange={(e)=>this.setState({name:e.target.value})} placeholder="input your name"/></div>
                <div><span>password</span>  <input type="password" onChange={(e)=>this.setState({password:e.target.value})} placeholder="input your name"/></div>
                 <div><button type="submit" onClick={this.onSubmit}>Submit </button></div>
-                {redirect&&  <Redirect to = "/question"/>}
+               
             </div>
             
 

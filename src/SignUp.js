@@ -20,7 +20,7 @@ class SignUp extends Component {
     onSubmit =()=>{
         if(this.state.password1 !== this.state.password2){
             this.setState({error:true})
-        }else{
+        }else if( this.state.name !== '' && this.state.password !== ''){
             localStorage.setItem("name",this.state.name);
             localStorage.setItem("password",this.state.password1);
             this.props.history.push('/login')
@@ -35,8 +35,8 @@ class SignUp extends Component {
         return (
             <div><div>SignUp </div>  
                <div> <span>Name</span>  <input type="text" onChange={(e)=>this.setState({name:e.target.value}) }placeholder="input your name"/></div>
-               <div><span>password</span>  <input type="password" onChange={(e)=>this.setState({password1:e.target.value})} name="password1" placeholder="input your name"/></div>
-               <div><span>Re-Enter Your Password</span>  <input type="password" name="password2" onChange={(e)=>this.setState({password2:e.target.value})} placeholder="input your name"/></div>
+               <div><span>password</span>  <input type="password" onChange={(e)=>this.setState({password1:e.target.value})} name="password1" placeholder="Input your password"/></div>
+               <div><span>Re-Enter Your Password</span>  <input type="password" name="password2" onChange={(e)=>this.setState({password2:e.target.value})} placeholder="Input your password"/></div>
                {this.state.error &&<div><span>*password should be same</span></div>}
                <div><button onClick={this.onSubmit}>Submit</button></div>
                {redirect && <Link to="/question" />}
